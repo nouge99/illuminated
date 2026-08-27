@@ -1,4 +1,5 @@
 Django==6.1
 djangorestframework==3.16.1
 python-dotenv==1.2.3
-gunicorn==26.2.0
+gunicorn
+django-cors-headers
