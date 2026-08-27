@@ -7,7 +7,7 @@ SECRET_KEY = 'django-insecure-replace-this-with-a-real-secret-key-before-deployi
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.86.216', 'tracking-smell-reward-anticipated.trycloudflare.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.86.216']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
