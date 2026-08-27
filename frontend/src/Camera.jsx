@@ -78,7 +78,7 @@ export default function Camera({ setIsCameraOn, session }) {
         };
     }, []);
 
-
+    
     // Get ritual results when symbol triad is confirmed
     useEffect(() => {
         if (!confirmedSymbols) return;
@@ -90,6 +90,7 @@ export default function Camera({ setIsCameraOn, session }) {
 
         fetch(`${import.meta.env.VITE_API_URL}/api/perform_ritual/`, {
             method: "POST",
+            credentials: "include",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({ aspect, element1, element2 })
         })

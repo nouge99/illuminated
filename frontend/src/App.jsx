@@ -45,7 +45,7 @@ function App() {
 
     // Generate seed on mount if one doesn't exist, use seed to generate arcana setup
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL}/api/randomise_arcana/${seed}`, {
+        fetch(`${import.meta.env.VITE_API_URL}/api/randomise_arcana/${seed}/`, {
             method: "GET",
             credentials: "include"
         })

@@ -75,10 +75,13 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+SESSION_COOKIE_SAMESITE = "None"
+SESSION_COOKIE_SECURE = True
+
+CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://192.168.86.216:5173",
     "https://illuminated-yfys.onrender.com"
 ]
 
-CORS_ALLOW_CREDENTIALS = True
