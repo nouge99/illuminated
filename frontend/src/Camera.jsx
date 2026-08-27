@@ -90,7 +90,7 @@ export default function Camera({ setIsCameraOn, session }) {
         const element2 = CLASS_NAMES[confirmedSymbols[2].classId];
         console.log(`${aspect} ${element1} ${element2}`);
 
-        fetch(`/api/perform_ritual/`, {
+        fetch(`${import.meta.env.VITE_API_URL}/api/perform_ritual/`, {
             method: "POST",
             credentials: "include",
             headers: {"Content-Type": "application/json"},
