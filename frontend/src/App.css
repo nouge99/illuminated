@@ -1,0 +1,374 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  width: 100vw;
+  height: 100dvh;
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  overflow: hidden;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: #242424;
+  color: #E3E3E3;
+ 
+}
+
+@font-face {
+  font-family: 'Amarante';
+  src: url('./assets/Amarante-Regular.ttf') format('truetype');
+}
+
+h1 {
+  font-family: 'Amarante', serif;
+  color: red;
+  margin-bottom: 0px;
+}
+
+h2 {
+  margin: 15px 0px 0px 0px;
+}
+
+h3 {
+  margin: 0px 0px 10px 0px;
+  font-size: 2rem;
+}
+
+h4 {
+  margin: 0px 0px 10px 0px;
+  font-size: clamp(1rem, 0.5rem + 5vw, 2rem);
+  line-height: 1.2;
+}
+
+button {
+  border: none;
+  font-family: 'Amarante', serif;
+}
+
+
+/* –––– App (main page) –––– */
+
+
+.main-page-holder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  gap: 30px;
+}
+
+.game-info-box {
+  border-radius: 10px;
+  border: 1px solid white;
+  width: 30vw;
+  min-width: 300px;
+}
+
+.large-button {
+  height: 80px;
+  min-width: 30vw;
+  background: #2f4f4f;
+  font-size: 30px;
+  color: #E3E3E3;
+}
+
+.loading {
+  background: #BBD8D8;
+  color: grey;
+}
+
+.small-button-holder {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.small-button {
+  height: 50px;
+  min-width: 10vw;
+  background: grey;
+  color: #E3E3E3;
+}
+
+.popup-background {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100; 
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.popup-background.input-popup {
+  align-items: flex-start;
+  padding-top: 5vh;
+}
+
+.abandon-game-box {
+  background: darkgoldenrod;
+  padding: 40px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  width: clamp(300px, 50%, 400px);
+  height: 40%;
+}
+
+.row-holder {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
+}
+
+.seed-input-box {
+  background: darkgoldenrod;
+  padding: 40px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  width: clamp(300px, 50%, 400px);
+  height: 38%;
+}
+
+.seed-input-text {
+  font-weight: bold;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.confirmation-popup {
+  background: darkgoldenrod;
+  padding: 20px 40px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: clamp(300px, 50%, 400px);
+}
+
+.arcana-display {
+  margin-top: 100px;
+}
+
+
+/* –––– Camera –––– */
+
+
+.results-page-holder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.ritual-ingredients-holder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 40%;
+  overflow: hidden;
+}
+
+.ritual-header {
+  color: yellow;
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 0;
+  font-family: 'Amarante', serif;
+}
+
+.results-aspect-holder {
+  position: relative;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.ritual-image {
+  padding: 0;
+  width: 100px;
+}
+
+.ingredient-image {
+  filter: invert(1);
+  width: 50px;
+}
+
+.ritual-text {
+  color: white;
+  font-size: 1rem;
+  font-weight: normal;
+  padding: 0;
+  font-family: 'Amarante', serif;
+}
+
+.ingredient-row {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.vertical-holder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.result-card {
+  border: 1px solid darkslategray;
+  border-radius: 10px;
+  padding: 20px 10px;
+  background-color: rgb(82, 82, 82);
+  width: 35%;
+  min-width: 350px;
+  height: 45%;
+}
+
+.row-holder.card {
+  height: 15vh;
+  min-height: 180px;
+  align-items: flex-end;
+}
+
+.essences-display {
+  margin-top: 6px;
+  justify-content: flex-end;
+}
+
+.essence-image {
+  width: 50px;
+}
+
+.essence-name {
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.outcome-image {
+  width: 160px;
+}
+
+.instruction {
+  font-size: 0.8rem;
+  font-weight: 700;
+  white-space: pre-wrap;
+  max-width: 60%;
+} 
+
+.align-message-left {
+  text-align: left;
+  padding-left: 15px;
+}
+
+.align-message-center {
+  text-align: center;
+} 
+
+.button-finish, .button-cancel {
+  height: 10%;
+  margin-top: 3dvh;
+}
+
+.camera-page-holder {
+  height: 100%;
+  width: 100%;
+}
+
+.camera-holder {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 6/7;
+}
+
+.camera-holder video {
+  width: 100%; 
+  height: 100%; 
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  object-fit: cover;
+}
+
+.camera-holder canvas {
+  width: 100%; 
+  height: 100%; 
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  pointer-events: none;
+}
+
+.detected-symbols-holder {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+
+/* –––– CheckResults –––– */
+
+
+.confirm-symbols-holder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 5px;
+}
+
+.symbol-image-holder {
+  margin: 0 0 -10px 0;
+}
+
+.symbol-text {
+  margin-top: 0px;
+  padding-top: 0px;
+}
+
+.symbol-row-holder {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  margin: 10px 0 10px 0;
+}
+
+.button-row-holder {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;  
+  gap: 20px;
+}
+
+.button-check-results {
+  height: 40px;
+  min-width: 10vw;
+  background: grey;
+  color: #E3E3E3;
+}
