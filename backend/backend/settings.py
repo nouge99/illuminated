@@ -7,7 +7,7 @@ SECRET_KEY = 'django-insecure-replace-this-with-a-real-secret-key-before-deployi
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.86.216']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.86.216', 'illuminated-pk5m.onrender.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
