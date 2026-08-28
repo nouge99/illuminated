@@ -7,24 +7,17 @@ from django.db.models import Count
 
 from .models import Aspect, Element, Ritual
 
-# Use request.session["seed"] and request.session["hashed_seed"] to store info? 
 
 load_dotenv()
 SECRET_RANDOMISER_KEY=os.environ["SECRET_RANDOMISER_KEY"].encode()
 
-@api_view(['GET'])
-def hello_world(request):
-    return Response({ "message": "Hello from the backend!" })
 
 def create_random_seed():
     seed = ''.join(random.choices(string.ascii_uppercase, k=5))
     return seed
 
-@api_view(['GET'])
-def randomise_arcana(request, seed=""):
-    if not seed:
-        seed = create_random_seed()
 
+def generate_arcana(seed):
     hashed_seed = hash_seed(seed)
     rng = random.Random(hashed_seed)
 
@@ -43,10 +36,6 @@ def randomise_arcana(request, seed=""):
                 "Summoning", "Evocation",
                 "Evocation", "Conjuration"]
 
-    # Each element has two ingredients that match it
-    # Each element's two ingredients have different aspects, 
-    #   which are set and don't vary game to game
-
     arcana = {}
 
     for element in elements:
@@ -57,7 +46,15 @@ def randomise_arcana(request, seed=""):
         fragment = fragments.pop(rng.randrange(len(fragments)))
         arcana[fragment] = {"element": element, "aspect": "Summoning"}
 
-    request.session["arcana"] = arcana
+    return arcana
+
+
+@api_view(['GET'])
+def randomise_arcana(request, seed=""):
+    if not seed:
+        seed = create_random_seed()
+
+    arcana = generate_arcana(seed)
 
     return Response({ "arcana": arcana, "seed": seed })
 
@@ -65,6 +62,7 @@ def randomise_arcana(request, seed=""):
 @api_view(['POST'])
 def perform_ritual(request):
     data = request.data 
+    seed = data.get("seed")
     aspect_ingredient = data.get("aspect") 
     element1_ingredient = data.get("element1")
     element2_ingredient = data.get("element2")
@@ -72,7 +70,8 @@ def perform_ritual(request):
     if not aspect_ingredient or not element1_ingredient or not element2_ingredient:
         return Response({ "ritual_result": "Error: ingredient not provided" }) 
 
-    arcana = request.session["arcana"]
+    arcana = generate_arcana(seed)
+
     aspect = arcana[aspect_ingredient]["aspect"]
     element1 = arcana[element1_ingredient]["element"]
     element2 = arcana[element2_ingredient]["element"]

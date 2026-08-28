@@ -16,7 +16,7 @@ Object.entries(GHOST_IMG).map(([ingredient, imageSrc]) => {
     INGREDIENT_GHOST_IMGS[ingredient].src = imageSrc;
 })
 
-export default function Camera({ setIsCameraOn, session }) {
+export default function Camera({ setIsCameraOn, session, seed }) {
     const videoRef = useRef(null);
     const streamRef = useRef(null);
     const canvasRef = useRef(null);
@@ -90,9 +90,9 @@ export default function Camera({ setIsCameraOn, session }) {
 
         fetch(`${import.meta.env.VITE_API_URL}/api/perform_ritual/`, {
             method: "POST",
-            credentials: "include",
+            // credentials: "include",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({ aspect, element1, element2 })
+            body: JSON.stringify({ seed, aspect, element1, element2 })
         })
             .then(res => res.json())
             .then(data => {

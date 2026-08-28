@@ -47,7 +47,7 @@ function App() {
     useEffect(() => {
         fetch(`${import.meta.env.VITE_API_URL}/api/randomise_arcana/${seed}/`, {
             method: "GET",
-            credentials: "include"
+            // credentials: "include"
         })
             .then(res => res.json())
             .then(data => {
@@ -94,7 +94,8 @@ function App() {
                 <>
                     <Camera 
                         setIsCameraOn={setIsCameraOn} 
-                        session={session}
+                        session={session} 
+                        seed={seed}
                     />
                 </>
             ) : (
