@@ -437,20 +437,20 @@ export default function Camera({ setIsCameraOn, session, seed }) {
 
                         <div className="vertical-holder result-card">
                             <div className="ritual-text">{ritualResults.message}</div>
-                            <div className="ritual-header">{ritualResults.ritualName}</div>
+                            <div className="ritual-header results">{ritualResults.ritualName}</div>
                             <div className="row-holder card">
                                 <div className="vertical-holder essences-display">
                                     <div>
                                         <img className="essence-image" src={ELEMENT_IMG[ritualResults.element1]} />
                                         <div className="essence-name">
-                                            {ritualResults.element1 === "Equal" ? "Identical essences" : ritualResults.element1}
+                                            {ritualResults.element1}
                                         </div>
                                     </div>
                                     {/* TODO: REMOVE STYLE TO CSS */}
                                     <div style={{ paddingTop: "10px" }}> 
                                         <img className="essence-image" src={ELEMENT_IMG[ritualResults.element2]} />
                                         <div className="essence-name">
-                                            {ritualResults.element2 === "Equal" ? "Identical essences" : ritualResults.element2}
+                                            {ritualResults.element2}
                                         </div>
                                     </div>
                                 </div>

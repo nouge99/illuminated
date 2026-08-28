@@ -128,7 +128,7 @@ def perform_ritual(request):
                 fragment = name
                 break
         effect_image = f"fragment_{fragment}"
-        element1 = element2 = "Equal"
+        element1 = element2 = "Identical"
         instruction = f"Gain a {fragment} fragment"
 
     elif element2 == opposed_element.name:

@@ -16,6 +16,7 @@ dist-ssr
 
 # table backups
 data_backup.json
+backup.json
 
 # files onnx needs to run
 public/*.wasm

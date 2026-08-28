@@ -204,15 +204,32 @@ button {
   font-family: 'Amarante', serif;
 }
 
+.ritual-header.results {
+  line-height: 1;
+  padding: 5px 0 0 0;
+}
+
 .results-aspect-holder {
   position: relative;
   display: inline-block;
-  margin-top: 10px;
+  margin-top: 0px;
+  height: 100px;
 }
 
 .ritual-image {
+  transform: translate(-50%, -50%);
+  top: 50%; 
+  left: 50%;
+  position: absolute;
   padding: 0;
   width: 100px;
+}
+
+.top {
+  transform: translate(-50%, -50%);
+  top: 50%; 
+  left: 50%;
+  position: absolute;
 }
 
 .ingredient-image {
@@ -244,7 +261,7 @@ button {
 .result-card {
   border: 1px solid darkslategray;
   border-radius: 10px;
-  padding: 20px 10px;
+  padding: 10px 10px;
   background-color: rgb(82, 82, 82);
   width: 35%;
   min-width: 350px;
@@ -255,6 +272,7 @@ button {
   height: 15vh;
   min-height: 180px;
   align-items: flex-end;
+  width: 80%;
 }
 
 .essences-display {
@@ -279,7 +297,7 @@ button {
   font-size: 0.8rem;
   font-weight: 700;
   white-space: pre-wrap;
-  max-width: 60%;
+  max-width: 80%;
 } 
 
 .align-message-left {

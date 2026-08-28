@@ -77,7 +77,7 @@ import Power from './power.png'
 import Knowledge from './knowledge.png'
 import Unknown from './unknown.png'
 import Opposed from './opposed.png'
-import Equal from './equal.png'
+import Identical from './equal.png'
 
 import x from './x.png'
 
@@ -166,5 +166,5 @@ export const ELEMENT_IMG = {
     Power,
     Unknown,
     Opposed,
-    Equal
+    Identical
 }
