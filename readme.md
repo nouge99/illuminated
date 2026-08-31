@@ -9,7 +9,7 @@ https://illuminated-yfys.onrender.com
 
 (The backend is also hosted on a Render web service, and called via API calls.)
 
-To properly use the app, you'll need to print out the [ingredient images](./images/ingredients.png) used in the board game, and cut out the cards so you can scan them using the app's symbol detection.
+To properly use the app, you'll need to print out the [ingredient images](./docs/images/ingredients.png) used in the board game, and cut out the cards so you can scan them using the app's symbol detection.
 
 ## What is it?
 
@@ -17,7 +17,7 @@ This is a helper app for a board game called 'The Illuminated', a board game in 
 
 A core element of the game is deduction. Players try to cast spells by combining different ingredients – and the aspects and effects of those ingredients change from game to game, and need to be deduced by experimentation.
 
-There are more detailed instructions on how the game play and spell casting works in the [How to Play document](./how-to-play.md).
+There are more detailed instructions on how the game play and spell casting works in the [How to Play document](./docs/how-to-play.md).
 
 ## How do I use it?
 
