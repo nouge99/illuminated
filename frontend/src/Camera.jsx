@@ -67,7 +67,7 @@ export default function Camera({ setIsCameraOn, session, seed }) {
             });
             
 
-        // Clean up camera and engine on component dismount
+        // Clean up camera on component dismount
         return () => {
             cameraMounted = false;
             streamRef.current?.getTracks().forEach(track => track.stop());
@@ -153,6 +153,7 @@ export default function Camera({ setIsCameraOn, session, seed }) {
         return () => cancelAnimationFrame(animationFrameIdRef.current);
     }, [detectedSymbols]);
 
+    
     // Use nonMaxSuppression function to prevent duplicate detection boxes
     // NB: Use nonMaxSuppressionAsync so thread isn't blocked
     // Dispose of all tensors manually (javascript won't handle them because they're in GPU)!!!

@@ -53,7 +53,6 @@ def generate_arcana(seed):
 def randomise_arcana(request, seed=""):
     if not seed:
         seed = create_random_seed()
-
     arcana = generate_arcana(seed)
 
     return Response({ "arcana": arcana, "seed": seed })

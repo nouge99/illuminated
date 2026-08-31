@@ -13,6 +13,7 @@ function App() {
     const [isCameraOn, setIsCameraOn] = useState(false);
     const [isEnteringSeed, setIsEnteringSeed] = useState(false);
     const [isConfirmingNewGame, setIsConfirmingNewGame] = useState(false);
+    const [isLoadingSeed, setIsLoadingSeed] = useState(false);
     const [seedInput, setSeedInput] = useState("");
     const [confirmationMessage, setConfirmationMessage] = useState("");
     const [showConfirmationPopup, setShowConfirmationPopup] = useState(false);
@@ -39,15 +40,15 @@ function App() {
         
         // ?? Do I need a clean up call to release the session from GPU? 
         // It's in the root app so won't normally need clean up
-        return () => {session?.release()}; 
+        return () => session?.release(); 
     }, []);    
 
 
     // Generate seed on mount if one doesn't exist, use seed to generate arcana setup
     useEffect(() => {
+        setIsLoadingSeed(true);
         fetch(`${import.meta.env.VITE_API_URL}/api/randomise_arcana/${seed}`, {
             method: "GET",
-            // credentials: "include"
         })
             .then(res => res.json())
             .then(data => {
@@ -55,8 +56,8 @@ function App() {
                 setArcanaDebug(data.arcana);
                 setSeed(data.seed);
                 localStorage.setItem("seed", data.seed);
-            }
-        );
+            })
+            .finally(() => setIsLoadingSeed(false));
     }, [newSeedFlag]);
 
 
@@ -117,8 +118,19 @@ function App() {
                             </button>
                         </div>
                         <div className="small-button-holder">
-                            <button className="small-button" onClick={() => setIsConfirmingNewGame(true)}>Create new game</button>
-                            <button className="small-button" onClick={() => setIsEnteringSeed(true)}>Enter game code</button>
+                            <button 
+                                className="small-button" 
+                                disabled={isLoadingSeed}
+                                onClick={() => setIsConfirmingNewGame(true)}
+                            >
+                                {isLoadingSeed ? "Loading..." : "Create new game"}
+                            </button>
+                            <button 
+                                className="small-button" 
+                                onClick={() => setIsEnteringSeed(true)}
+                            >
+                                Enter game code
+                            </button>
                         </div>
                     </div>
 
