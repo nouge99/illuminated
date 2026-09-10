@@ -112,24 +112,21 @@ function App() {
                         </div>
                         <div>
                             <button 
-                                className={`large-button ${session ? "active" : "loading"}`}  
-                                onClick={session ? () => setIsCameraOn(prev => !prev) : undefined}>
-                                    {session ? "Begin ritual" : "Loading"}
+                                className={`large-button ${session && !isLoadingSeed ? "active" : "loading"}`}  
+                                onClick={session && !isLoadingSeed ? () => setIsCameraOn(prev => !prev) : undefined}>
+                                    {session && !isLoadingSeed ? "Begin ritual" : "Loading"}
                             </button>
                         </div>
                         <div className="small-button-holder">
                             <button 
-                                className="small-button" 
-                                disabled={isLoadingSeed}
-                                onClick={() => setIsConfirmingNewGame(true)}
-                            >
-                                {isLoadingSeed ? "Loading..." : "Create new game"}
+                                className={`small-button ${isLoadingSeed ? "loading" : "active"}`}
+                                onClick={isLoadingSeed ? undefined : () => setIsConfirmingNewGame(true)}>
+                                    {isLoadingSeed ? "Loading" : "Create new game"}
                             </button>
                             <button 
                                 className="small-button" 
-                                onClick={() => setIsEnteringSeed(true)}
-                            >
-                                Enter game code
+                                onClick={() => setIsEnteringSeed(true)}>
+                                    Enter game code
                             </button>
                         </div>
                     </div>

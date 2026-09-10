@@ -38,9 +38,9 @@ The combined **Essences** of the bottom two ingredients determine the actual spe
 
 ![Screenshot](./images/arcane_map.png)
 
-## The benefits (and hazards) of experimentation
+## The benefits and hazards of experimentation
 
-These are the possible outcomes of ritual experimentaiton: 
+There are four possible outcomes to ritual experimentaiton: 
 
 **Success**
 <br>The two Essences are a legitimate combination, resulting in the discovery of a new ritual.
@@ -49,9 +49,12 @@ These are the possible outcomes of ritual experimentaiton:
 <br>Two idential Essences will combine to form a fragment – a more enduring form of that essence.
 
 **Corruption**
-<br>Two opposed Essences will react to corrupt the experimenter.
+<br>Two opposed Essences (that sit opposite to each other on the Essences wheel) will react to corrupt the experimenter.
 
 **Fizz**
 <br>If none of the above results apply, the ritual experiment fizzes with no result.
 
+## Inspirations and attributions
+
+**The Illuminated** was inspired by Matúš Kotry's deduction board game **Alchemists**, and by Weather Factory's **Cultist Simulator** computer game. 
 

@@ -13,9 +13,9 @@ To properly use the app, you'll need to print out the [ingredient images](./docs
 
 ## What is it?
 
-This is a helper app for a board game called 'The Illuminated', a board game in which different factions of a Golden Dawn-style occult society compete to take over as their leader's health fades. 
+This is a helper app for a board game called 'The Illuminated', a board game prototype I've been developing in which different factions of a Golden Dawn-style occult society compete to take over as their leader's health fades. 
 
-A core element of the game is deduction. Players try to cast spells by combining different ingredients – and the aspects and effects of those ingredients change from game to game, and need to be deduced by experimentation.
+A core element of the game is deduction. Players try to cast spells by combining different ingredients – and the aspects and effects of those ingredients change from game to game, and need to be deduced by experimentation.
 
 There are more detailed instructions on how the game play and spell casting works in the [How to Play document](./docs/how-to-play.md).
 
@@ -47,10 +47,16 @@ The Vite + React frontend is doing most of the work here. The React components i
 **App.jsx**
 <br>This is (obviosuly) the main app component that renders when the app mounts, which includes these features:  
 
-- A useEffect to initialise the detection session, loading the detection model into memory, and creating the onnxruntime webGPU/wasm inference session.
-- A useEffect that sends the current seed (if one exists in localStorage) to the backend to generate the current attributes of the ingredients for this game, and to generate a new seed if one doesn't currently exist. (The ingredient attributes fetches here are only currently used for debugging, but I've left it in for the convenience of future development).
-- functions to handle the user generating a new random seed, or inputting their own seed (so they can continue a previous game, or get into the same game instance as fellow players). I've used some regex to put guardrails around the user game code inputs.
-- **render logic** 
+- **Initialisation useEffect**
+<br>A useEffect to initialise the detection session, loading the detection model into memory, and creating the onnxruntime webGPU/wasm inference session.
+
+- **Generate game seed useEffect**
+<br>A useEffect that sends the current seed (if one exists in localStorage) to the backend to generate the current attributes of the ingredients for this game, and to generate a new seed if one doesn't currently exist. (The ingredient attributes fetches here are only currently used for debugging, but I've left it in for the convenience of future development).
+
+- **Seed input with guardrails functions**
+<br>Functions to handle the user generating a new random seed, or inputting their own seed (so they can continue a previous game, or get into the same game instance as fellow players). I've used some regex to put guardrails around the user game code inputs.
+
+- **Render logic** 
 <br>Conditional rendering with states is used to display modals for inputing or randomising new game codes, and to switch to the video feed display (Camera.jsx) when the user hits the 'begin ritual' button.
 <br><br>
 
@@ -60,6 +66,7 @@ The Vite + React frontend is doing most of the work here. The React components i
 Here's what's in it:
 - **Camera stream useEffect** 
 <br>A useEffect to set up the camera stream, to handle errors or the user declining permission by unmounting the Camera component (to take the user back to the main app screen), and to clean up the camera stream when the component unmounts.
+
 - **Fetch ritual results useEffect** 
 <br>A useEffect that kicks in when the user confirms the 3 detected symbols are correct, and fetches the results of the combination from the backend for display.
 
@@ -70,10 +77,10 @@ Here's what's in it:
 <br>This checks for duplicate symbol detections very close trother and eliminates the duplicates (to remove the multiple detections that inevitably happen for each symbol instance), using TensorFlow's nonMaxSuppressionAsync function. 
 
 - **detections function** 
-<br>This processes the detection model output to find all detected symbols, and keeping the ones that are above a set confidence threshold (to weed out low-confidence detections). This function also checks to see if (after duplicate detections are suppressed) only 3 symbols are being detected, with one symbol clearly above the other two – if so, we set a successful detected symbol batch for approval by the user.
+<br>This processes the detection model output to find all detected symbols, and keep the ones that are above a set confidence threshold (to weed out low-confidence detections). This function also checks to see if (after duplicate detections are suppressed) only 3 symbols are being detected, with one symbol clearly above the other two – if so, we set a successful detected symbol batch for approval by the user.
 
 - **Detect useEffect** 
-<br>The main detection inference loop, in the form of a useEffect that runs continuously, calling itself again on completion every 10 miliseconds (until paused by successfully detecting a valid trio of synbols). The function converts the video feed into a square shape (to match the square images the detection model was trained on), and converts the frame into the data structure the YOLO model needs, then passes the data to the detection model. We then check the model's output for successful detections.
+<br>The main detection inference loop, in the form of a useEffect that runs continuously, calling itself again on completion every 10 miliseconds (until paused by successfully detecting a valid trio of synbols). The function converts the video feed into a square shape (to match the square images the detection model was trained on), converts the frame into the data structure the YOLO model needs, then passes the data to the detection model. We then check the model's output for successful detections.
 
 - **Video cleanup useEffect** 
 <br>A final useEffect does a brute-force clean-up of the video stream tracks, animation frames and detection timeout when a successful symbol combination is confirmed by the user. (I was getting errors with CPU use going through the roof, so I did this to double-check everything was getting shut down right, and to check for any undisposed tensors. It may be overkill.)
