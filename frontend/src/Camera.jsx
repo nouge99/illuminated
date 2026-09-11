@@ -8,10 +8,10 @@ import { ASPECT_IMG, INGREDIENT_IMG, GHOST_IMG, RESULT_IMG, ELEMENT_IMG } from '
 
 const numClasses = CLASS_NAMES.length; 
 
-// Need to preload the sumbol images so they're available for drawing on the canvas
+// Preload the sumbol images so they're available for drawing on the canvas
 const INGREDIENT_GHOST_IMGS = {}
 Object.entries(GHOST_IMG).map(([ingredient, imageSrc]) => {
-    // need to reference 'new Image()' to create HTML element for the image, effectively preloading it 
+    // Reference 'new Image()' to create HTML element for the image, effectively preloading it 
     INGREDIENT_GHOST_IMGS[ingredient] = new Image();
     INGREDIENT_GHOST_IMGS[ingredient].src = imageSrc;
 })
@@ -447,8 +447,7 @@ export default function Camera({ setIsCameraOn, session, seed }) {
                                             {ritualResults.element1}
                                         </div>
                                     </div>
-                                    {/* TODO: REMOVE STYLE TO CSS */}
-                                    <div style={{ paddingTop: "10px" }}> 
+                                    <div className="second-essence"> 
                                         <img className="essence-image" src={ELEMENT_IMG[ritualResults.element2]} />
                                         <div className="essence-name">
                                             {ritualResults.element2}
@@ -456,8 +455,7 @@ export default function Camera({ setIsCameraOn, session, seed }) {
                                     </div>
                                 </div>
                                 
-                                {/* TODO: REMOVE STYLE TO CSS */}
-                                <div className="vertical-holder" style={{ paddingLeft: "0px", justifyContent: "flex-end" }}>
+                                <div className="vertical-holder outcome-holder">
                                     <div>
                                         <img className="outcome-image" src={RESULT_IMG[ritualResults.effectImage]} />
                                     </div>

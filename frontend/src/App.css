@@ -26,7 +26,6 @@ body {
   text-align: center;
   background-color: #242424;
   color: #E3E3E3;
- 
 }
 
 @font-face {
@@ -173,7 +172,6 @@ button {
   margin-top: 100px;
 }
 
-
 /* –––– Camera –––– */
 
 
@@ -280,6 +278,10 @@ button {
   justify-content: flex-end;
 }
 
+.second-essence {
+  padding-top: 10px;
+}
+
 .essence-image {
   width: 50px;
 }
@@ -287,6 +289,11 @@ button {
 .essence-name {
   font-size: 0.8rem;
   font-weight: 700;
+}
+
+.outcome-holder {
+  padding-left: 0px;
+  justify-content: flex-end;
 }
 
 .outcome-image {
